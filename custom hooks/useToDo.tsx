@@ -2,13 +2,14 @@ import { useState } from "react"
 import { useDispatch } from "react-redux"
 import { useSelector } from "react-redux"
 import ToDoType from "@/types/toDoType"
-import { addToDo } from "@/store/toDoSlice"
+import { addToDo, onDel, onUpdate } from "@/store/toDoSlice"
 
 
 
 const UseToDo = () => {
 
     const [events, setEvents] = useState<string>("")
+    const [isUpdate, setIsUpdate] = useState(false)
 
     const data = useSelector((store:any)=>store.ToDoSlice.ToDoArr)
     const dispatch = useDispatch()
@@ -19,14 +20,22 @@ const UseToDo = () => {
         console.log(data)
     }
 
-    const onDelHandler = () => {
+    const onDelHandler = (items:ToDoType) => {
+        dispatch(onDel(items))}
         
-    }
+        
+    const onUpdateHandler = (items:ToDoType) => {
+        console.log();
+        
+    }    
+        
+        
   
 
 
     return {
-        events, setEvents, onClickHandler, data, onDelHandler
+        events, setEvents, onClickHandler, data, onDelHandler, isUpdate,
+        onUpdateHandler
     }
 
 }

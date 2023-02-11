@@ -1,10 +1,12 @@
 import UseToDo from "@/custom hooks/useToDo"
+import ToDoType from "@/types/toDoType"
 
 
 
 const ToDo = () => {
 
-    const {events, setEvents, onClickHandler, data, onDelHandler} = UseToDo()
+    const {events, setEvents, onClickHandler, data, onDelHandler,isUpdate,
+        onUpdateHandler} = UseToDo()
 
    
 
@@ -13,14 +15,18 @@ const ToDo = () => {
     return(<>
 
     <input value={events} onChange={(e)=>setEvents(e.target.value)}  />
+        { isUpdate==false?
+    <button onClick={onClickHandler} > Add </button> :
+    <button onClick={onClickHandler} > update </button> 
+    
+        }<br/>
+        
 
-    <button onClick={onClickHandler} > Add </button> <br/>
-    <button onClick={()=>onDelHandler()} > Del </button> <br/>
-
-    {data.map((items)=> {
+    {data.map((items:ToDoType)=> {
         return( <>
-        <li>{items.item}</li>
-        <li>{items.id}</li>
+        <li>{items.item}  <button onClick={()=>onDelHandler(items)} > Del </button>
+          <button onClick={()=>onUpdateHandler(items)} > Update </button> </li>
+        
         </>)
     })}
 

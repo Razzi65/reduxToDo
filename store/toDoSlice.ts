@@ -16,11 +16,29 @@ export const ToDoSlice = createSlice({
             )      
             
             
+        },
+
+    onDel: (state, action) => {
+        console.log(action.payload.id);
+        let filteredArr = state.ToDoArr.filter((newitem)=>newitem.id!=action.payload.id)
+        
+        let newState = {
+            ...state,
+            ToDoArr:filteredArr
         }
+        return newState
+
+    },
+
+    onUpdate: (state, action)=> {
+
     }
 
-})
 
-export const {addToDo} = ToDoSlice.actions
+
+}}
+)
+
+export const {addToDo, onDel, onUpdate} = ToDoSlice.actions
 export default ToDoSlice.reducer
 
