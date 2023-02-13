@@ -17,6 +17,7 @@ const UseToDo = () => {
 
     const onClickHandler = () => {
         dispatch(addToDo(events))
+        setEvents("")
         console.log(data)
     }
 
@@ -25,9 +26,17 @@ const UseToDo = () => {
         
         
     const onUpdateHandler = (items:ToDoType) => {
-        console.log();
+        setIsUpdate(true)
+        setEvents(items.item)  
         
-    }    
+    }
+    
+    const onEditHandler = () => {
+        dispatch(onUpdate(events))
+        setIsUpdate(false)
+        console.log(events);
+        
+    }
         
         
   
@@ -35,7 +44,7 @@ const UseToDo = () => {
 
     return {
         events, setEvents, onClickHandler, data, onDelHandler, isUpdate,
-        onUpdateHandler
+        onUpdateHandler, onEditHandler
     }
 
 }

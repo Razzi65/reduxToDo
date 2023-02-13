@@ -31,8 +31,29 @@ export const ToDoSlice = createSlice({
     },
 
     onUpdate: (state, action)=> {
+        let filtered  = state.ToDoArr.map((items)=>{
+            console.log(items.id);
+            console.log(action.payload);
+            
+            
+            if(items.id==action.payload.id) {
+                return {
+                    ...items,
+                    item: action.payload.item
+                }
+            }
+            else {
+                return items}
+        })
+        
+        return {
+            ...state,
+            ToDoArr: filtered
+        }}
+        
+        
+       
 
-    }
 
 
 

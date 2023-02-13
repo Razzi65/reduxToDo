@@ -5,7 +5,7 @@ import ToDoType from "@/types/toDoType"
 
 const ToDo = () => {
 
-    const {events, setEvents, onClickHandler, data, onDelHandler,isUpdate,
+    const {events, setEvents, onClickHandler, data, onDelHandler,isUpdate,onEditHandler,
         onUpdateHandler} = UseToDo()
 
    
@@ -17,7 +17,7 @@ const ToDo = () => {
     <input value={events} onChange={(e)=>setEvents(e.target.value)}  />
         { isUpdate==false?
     <button onClick={onClickHandler} > Add </button> :
-    <button onClick={onClickHandler} > update </button> 
+    <button onClick={()=>onEditHandler()}  > update </button> 
     
         }<br/>
         
